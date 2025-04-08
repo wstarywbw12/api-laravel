@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Departement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +25,7 @@ class UserController extends Controller
             'email'          => 'required|email|unique:users,email',
             'password'       => 'required|string|min:6',
             'telepon'        => 'required|digits_between:10,15',
-            'status'         => 'required|boolean',
+            'status_aktif'         => 'required|boolean',
             'departemen_id'  => 'required|exists:departements,id',
         ]);
 
@@ -39,7 +38,7 @@ class UserController extends Controller
             'email'         => $request->email,
             'password'      => Hash::make($request->password),
             'telepon'       => $request->telepon,
-            'status'        => $request->status,
+            'status_aktif'        => $request->status_aktif,
             'departemen_id' => $request->departemen_id,
         ]);
 
@@ -71,7 +70,7 @@ class UserController extends Controller
             'email'          => 'sometimes|required|email|unique:users,email,' . $user->id,
             'password'       => 'sometimes|nullable|string|min:6',
             'telepon'        => 'sometimes|required|digits_between:10,15',
-            'status'         => 'sometimes|required|boolean',
+            'status_aktif'         => 'sometimes|required|boolean',
             'departemen_id'  => 'sometimes|required|exists:departements,id',
         ]);
 
@@ -84,7 +83,7 @@ class UserController extends Controller
             'email'         => $request->email ?? $user->email,
             'password'      => $request->password ? Hash::make($request->password) : $user->password,
             'telepon'       => $request->telepon ?? $user->telepon,
-            'status'        => $request->status ?? $user->status,
+            'status_aktif'        => $request->status_aktif ?? $user->status_aktif,
             'departemen_id' => $request->departemen_id ?? $user->departemen_id,
         ]);
 

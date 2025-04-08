@@ -40,7 +40,7 @@ Semua endpoint menggunakan prefix: `/api/v1/`
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/wstarywbw/api-laravel.git
+git clone https://github.com/wstarywbw12/api-laravel.git
 cd api-laravel
 ```
 
