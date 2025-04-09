@@ -14,7 +14,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('departemen')->get();
-        return response()->json($users);
+        return response()->json([
+            'success' => true,
+            'data' => $users
+        ]);
     }
 
     // Simpan pengguna baru
@@ -42,7 +45,7 @@ class UserController extends Controller
             'departemen_id' => $request->departemen_id,
         ]);
 
-        return response()->json(['message' => 'Pengguna berhasil dibuat', 'data' => $user], 201);
+        return response()->json(['success' => true, 'message' => 'Pengguna berhasil dibuat', 'data' => $user], 201);
     }
 
     // Tampilkan detail user berdasarkan ID
@@ -54,7 +57,7 @@ class UserController extends Controller
             return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
         }
 
-        return response()->json($user);
+        return response()->json(['success' => true, 'message' => 'Berhasil Mengambil Data Pengguna', 'data' => $user]);
     }
 
     // Update data user berdasarkan ID
@@ -87,7 +90,7 @@ class UserController extends Controller
             'departemen_id' => $request->departemen_id ?? $user->departemen_id,
         ]);
 
-        return response()->json(['message' => 'Pengguna berhasil diperbarui', 'data' => $user]);
+        return response()->json(['success' => true, 'message' => 'Pengguna berhasil diperbarui', 'data' => $user]);
     }
 
     // Hapus user
@@ -100,7 +103,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return response()->json(['message' => 'Pengguna berhasil dihapus']);
+        return response()->json(['success' => true, 'message' => 'Pengguna berhasil dihapus']);
     }
 }
 

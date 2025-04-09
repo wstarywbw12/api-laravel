@@ -11,7 +11,10 @@ class DepartementController extends Controller
     public function index()
     {
         $departements = Departement::all();
-        return response()->json($departements);
+        return response()->json([
+            'success' => true,
+            'data' => $departements
+        ]);
     }
 
     public function store(Request $request)
@@ -28,7 +31,7 @@ class DepartementController extends Controller
             'name' => $request->name,
         ]);
 
-        return response()->json(['message' => 'Departemen berhasil ditambahkan', 'data' => $departement], 201);
+        return response()->json(['success' => true, 'message' => 'Departemen berhasil ditambahkan', 'data' => $departement], 201);
     }
 
     public function show($id)
@@ -38,7 +41,7 @@ class DepartementController extends Controller
             return response()->json(['message' => 'Departemen tidak ditemukan'], 404);
         }
 
-        return response()->json($departement);
+        return response()->json(['success' => true, 'message' => 'Berhasil Mengambil Data Departemen', 'data' => $departement]);
     }
 
     public function update(Request $request, $id)
@@ -60,7 +63,7 @@ class DepartementController extends Controller
             'name' => $request->name,
         ]);
 
-        return response()->json(['message' => 'Departemen berhasil diperbarui', 'data' => $departement]);
+        return response()->json(['success' => true, 'message' => 'Departemen berhasil diperbarui', 'data' => $departement]);
     }
 
     public function destroy($id)
@@ -72,6 +75,6 @@ class DepartementController extends Controller
 
         $departement->delete();
 
-        return response()->json(['message' => 'Departemen berhasil dihapus']);
+        return response()->json(['success' => true, 'message' => 'Departemen berhasil dihapus']);
     }
 }
