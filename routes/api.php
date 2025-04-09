@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
-    Route::resource('departements', DepartementController::class);
-    Route::resource('users', UserController::class);
-    
+    Route::resource('departements', DepartementController::class)->except(['create', 'edit']);
+    Route::resource('users', UserController::class)->except(['create', 'edit']);
+
     // Route::prefix('users')->group(function () {
     //     Route::get('/', [UserController::class, 'index']);
     //     Route::post('/', [UserController::class, 'store']);
